@@ -1,0 +1,139 @@
+//Menu buttons or Breadcrumbs
+.menu-btn {
+    position: absolute;
+    z-index: 3;
+    right: 35px; // To make sure it move 35px from right side
+    top: 35px; // Will move 35px from top side
+    cursor: pointer; // To show that breadcrumb is a link
+    @include easeOut;
+
+    .btn-line {
+        width: 30px; // Width of breadcrumb
+        height: 3px;
+        margin: 0 0 5px 0;
+        background: #ffffff;
+        @include easeOut;
+    }
+
+    // To rotate the breadcrumb into 180 deg and make it into X
+    &.close { //close is a class which is not inside html file but since we adding to class menu-btn so we can use it
+    transform: rotate(180deg); // Rotating the breadcrumb
+
+    .btn-line { // For selecting each individual line
+
+        //1st line to \
+        &:nth-child(1) { 
+            transform: rotate(45deg) translate(5px, 5px); // translate(x,y) where x and y are axis
+        }
+
+        //2nd line to completely hide 
+        &:nth-child(2) {
+            opacity: 0;
+        }
+
+        //3rd line to / 
+        &:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+    }
+    }
+
+}
+
+// Menu Overlay
+.menu {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    opacity: 0.95;
+    visibility: hidden;
+
+    &.show { // This will help to show the menu when clicked on breadcrumb
+        visibility: visible;
+    }
+
+    &-branding, &-nav { // For selecting both the parts
+        display: flex;
+        flex-flow: column wrap;
+        align-items: center;
+        justify-content: center;
+        float: left;
+        width: 50%; // As there are 2 parts each with 50%
+        height: 100vh;
+        overflow: hidden; // No scroll bar to be displayed
+    }
+
+    &-nav {
+        margin: 0;
+        padding: 0;
+        background: darken($primary-color, 5);
+        list-style: none;
+        transform: translate3d(0, -100%, 0);// This is the main part for sliding
+        @include easeOut;
+
+        &.show {
+            transform: translate3d(0,0,0); // Slide from top
+        }
+    }
+
+    // Branding
+    &-branding {
+        opacity: 1;
+        background: $primary-color;
+        transform: translate3d(0, 100%, 0); // This is the main part for sliding
+        @include easeOut;
+
+        &.show {
+            transform: translate3d(0,0,0); // Slide from bottom
+        }
+
+        .portrait {
+            background: url(/dist/img/mypic.JPG);
+            background-size: cover; // To cover the complete image in the box
+            border-radius: 50%;
+            width: 50%;
+            height: 50%;
+            border: solid 3px #42b9f4;
+        }
+    }
+
+    .nav-item {
+        transform: translate3d(600px, 0, 0);
+        @include easeOut;
+
+
+        &.show {
+            transform: translate3d(0,0,0); // Slide from right
+        }
+
+        &.current > a  { // To select color for the HOME page
+            color: $secondary-color;
+        }
+    }
+
+// Home About me contact
+    .nav-link {
+        display: inline;
+        position: relative;
+        font-size: 30px;
+        text-transform: uppercase;
+        padding: 1rem 0;
+        font-weight: 300;
+        color: white;
+        @include easeOut;
+
+        &:hover {
+            color: $secondary-color;
+        }
+    }
+
+}
+
+
+// Delay each nav item slide
+@for $i from 1 through 4 {
+    .nav-item:nth-child(#{$i})
+    {
+      transition-delay: $i * 0.1s;
+    }
+}

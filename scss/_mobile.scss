@@ -1,0 +1,89 @@
+// Widerscreens
+@include mediaXl {
+
+    .projects {
+        grid-template-columns: repeat(3, 1fr); // 4 projects on widescreen
+    }
+    
+}
+
+// Laptops
+@include mediaLg {
+
+    .projects {
+        grid-template-columns: repeat(3, 1fr); // 3 projects on laptop
+    }
+    
+}
+
+// Tablets
+@include mediaMd {
+ 
+    main {
+        align-items: center;
+        text-align: center;
+
+        .lg-heading {
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+    }
+
+    ul.menu-nav, div.menu-branding {
+        float: none;
+        width: 100%; // as width will be 100% for the left and right side
+        min-height: 0;
+
+        &.show {
+        transform: translate3d(0,0,0); // Last position will at the center
+        }
+    }
+
+    .menu-nav {
+        height: 75vh; // Botton portion will be taking 75% of screen on tablet version
+        transform: translate(-100%, 0, 0); // Slide from left
+        font-size: 24px;
+    }
+
+    .menu-branding {
+        height: 25vh; // Top portion will be taking 25% of screen on tablet version
+        transform: translate(100%, 0, 0); // Slide from right
+
+        .portrait {
+            background: url('/dist/img/mypic.JPG');
+            background-size: cover;
+            width: 150px;
+            height: 150px;
+        }
+    }
+
+    // For the about page on small screen
+    .about-info {
+        grid-template-areas: 
+        'bioimage'
+        'bio'
+        'job1'
+        'job2'
+        'job3';
+
+        grid-template-columns: 1fr;
+    }
+
+    .projects {
+        grid-template-columns: repeat(2, 1fr); // 2 projects on tablet
+    }
+    
+}
+
+// Mobile
+@include mediaSm {
+   
+    main#home h1 {
+        margin-top: 10vh;
+    } 
+
+    .projects {
+        grid-template-columns: 1fr; // 1 project1 on mobile
+    }
+    
+}

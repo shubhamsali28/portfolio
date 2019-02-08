@@ -1,0 +1,248 @@
+@import 'config'; //To import files from _config.scss
+@import 'menu';
+
+
+
+* {
+    //For selecting everything and padding and all other css effects to inside elements only
+    box-sizing: border-box;
+}
+
+body {
+    @include background; //To call background function
+    background: $primary-color;
+    color: white;
+    height: 100%;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.5;
+}
+
+// Heading
+h1, h2, h3 {
+margin: 0;
+font-weight: 600; //400
+
+//& means h1.lg-heading or instead of h1 it can be h2,h3 also but in between 3 headings
+&.lg-heading {
+    font-size: 5rem; //6rem
+}
+
+&.sm-heading {
+    margin-bottom: 2rem;
+}
+}
+
+a {
+    color: #ffffff;
+    text-decoration: none; 
+}
+
+//Content inside breadcrumb
+header {
+    position: fixed; //Since it fixed so header will always be on top
+    z-index: 2;
+    width: 100%;
+}
+
+//Front end display
+main {
+padding: 4rem;
+min-height: calc(100vh - 60px); // For Sticky footer
+
+
+.icons {
+    margin-top: 1rem; 
+
+    a {
+        padding: 0.4rem;
+        //display: inline-block;
+
+        &:hover { 
+            //To add hover effects on icons &:hover means a:hover
+            color: $secondary-color;
+            
+            //transform: scale(1.5); To enlarge the icons
+
+            // Calling the @mixin easeOut() which is at the top of this file
+            @include easeOut();
+
+        }
+    }
+}
+
+
+&#home {
+    overflow: hidden; //No scroll bar on homepage;
+
+    h1 {
+        margin-top: 20vh; //vh is kind of similar to rem, em
+    }
+}
+}
+
+.about-info {
+    padding-top: 50px; //Add 
+    display: grid;
+
+    // grid template area is a actual visual representation of how it should be shown on screen
+    grid-template-areas:
+    'bioimage bio bio'
+    'job1 job2 job3';
+    grid-template-columns: repeat(3, 1rf); // rf is the fraction
+    grid-gap: 30px;
+
+
+    // .bio-image .bio .job1 .job2 .job3 will actually gets added into the visual representation mentioned above
+.bio-image {
+    grid-area: bioimage;
+    margin: auto;
+    border-radius: 50%;
+    border: $secondary-color 3px solid;
+    height: 200px;
+    width: 200px;
+}
+
+.bio {
+    grid-area: bio;
+    
+    // To Color bio text
+    .text-secondary {
+        color: $secondary-color;
+        font-size: 1.5rem;
+    }
+
+    p { // Add
+        text-align: justify; // To generate equally spaced paragraph
+    }
+}
+
+.job1 {
+    grid-area: job1;
+}
+
+.job2 {
+    grid-area: job2;
+}
+
+.job3 {
+    grid-area: job3;
+}
+
+.job {
+    background: lighten($primary-color, 5); // To lighten the background on the outside area of job
+    padding: 0.5rem;
+    border-bottom: 3px solid $secondary-color;
+
+    .big { //Add
+        font-weight: bold;
+        color: $secondary-color;
+    }
+    
+    li {
+        text-align: left;
+        line-height: 1.9;
+        // border-left: 2px solid transparent;
+    }
+
+    h5 {
+        font-size: 13px;
+        font-weight: 725;
+    }
+}
+}
+
+//Projects
+.projects {
+    padding-top: 25px; //Add For to top padding
+    display: grid;
+    grid-gap: 1.2rem;
+    grid-template-columns: repeat(3, 1fr);
+
+    img {
+        width: 100%;
+        height: 225px;// Add
+        border: 3px solid white;
+
+        &:hover {
+            opacity: 0.5;
+            border-color: $secondary-color;
+            @include easeOut;
+        }
+    }
+}
+
+//Contact
+.boxes {
+    display: flex;
+    flex-wrap: wrap; // So that they come together on small screen
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 1 rem;
+    padding-top: 25px;
+
+    div {
+        font-size: 2rem;
+        border: 3px solid white;
+        padding: 1.5rem 2rem;
+        margin-bottom: 3rem;
+        @include easeOut;
+
+        span {
+            color: $secondary-color;// Before hover the color is secondary
+        }
+        
+        &:hover {
+            padding: 1.5rem 1.5rem;
+            background: $secondary-color;
+            color: black;
+
+            span {
+                color: black;
+            }
+        }
+    }
+}
+
+// Button Styles for projects
+.btn {
+    display: block;
+    padding: 0.4rem 1rem;
+    border: 0;
+    margin-bottom: 0.3rem;
+    
+    &:hover {
+        background: $secondary-color;
+    }
+}
+
+// Github button of projects
+.btn-dark {
+    @extend .btn; // This will directly add the .btn from just mentioned above
+    background: darken($primary-color, 50);
+    color: white;
+    @include easeOut;
+}
+
+.btn-light {
+    @extend .btn; // This will directly add the .btn from just mentioned above
+    background: lighten($primary-color, 50);
+    color: #333;
+    @include easeOut;
+
+    &:hover {// This will stop the hover for the Project Name
+        background: lighten($primary-color, 50);
+    }
+}
+
+// Footer
+#main-footer {
+    text-align: center;
+    padding: 1rem;
+    background: darken($primary-color, 9);
+    height: 60px;
+}
+// For Footer to be sticky the code is in main.scss and we use calc() function
+
+
+@import 'mobile'; // Should be at the bottom

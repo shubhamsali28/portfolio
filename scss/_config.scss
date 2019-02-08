@@ -1,0 +1,61 @@
+// For background of the whole project
+$primary-color: #444;
+// For hover effects and for text elements too
+$secondary-color: #eece1a;
+// When to show background home image
+$show-home-image: true;
+$home-image: url(/dist/img/porto.jpeg);
+$background-opacity: 0.7; //0.9
+
+// mixin is a function actually a inbuild function which can be used and easeOut is made function
+@mixin easeOut {
+    transition: all 0.8s ease-out;
+}
+
+@mixin background {
+    @if $show-home-image {
+        &#bg-img { //id given to <body> in html 
+            background: $home-image;
+            background-attachment: fixed;
+            background-size: cover;
+
+
+            &:after { // :after is a sudo element which is treated as a declared HTML element but :after is not declared in Html
+                content: '';
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 100%;
+                height: 100%;
+                z-index: -1;
+                background: rgba($primary-color, $background-opacity);
+            }
+        }
+    }
+    
+}
+
+// Media Query Mixins
+@mixin mediaSm {
+    @media screen and (max-width: 500px) {
+        @content; // In this content will be automatically added from other file
+    }
+}
+
+@mixin mediaMd {
+    @media screen and (max-width: 768px) {
+        @content; // In this content will be automatically added from other file
+    }
+}
+
+@mixin mediaLg {
+    @media screen and (min-width: 769px) and (max-width: 1170px) {
+        @content; // In this content will be automatically added from other file
+    }
+}
+
+@mixin mediaXl {
+    @media screen and (min-width: 1171px) {
+        @content; // In this content will be automatically added from other file
+    }
+}
