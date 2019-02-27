@@ -102,7 +102,7 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.5; }
   body#bg-img {
-    background: url(/dist/img/porto.jpeg);
+/*     background: url(/dist/img/porto.jpeg); */
     background-attachment: fixed;
     background-size: cover; }
     body#bg-img:after {
@@ -150,7 +150,8 @@ main {
 .about-info {
   padding-top: 50px;
   display: grid;
-  grid-template-areas: 'bioimage bio bio' 'job1 job2 job3';
+  grid-template-areas: 'bioimage bio bio'
+ 'job1 job2 job3';
   grid-template-columns: repeat(3, 1rf);
   grid-gap: 30px; }
   .about-info .bio-image {
@@ -283,7 +284,11 @@ main {
       width: 150px;
       height: 150px; }
   .about-info {
-    grid-template-areas: 'bioimage' 'bio' 'job1' 'job2' 'job3';
+    grid-template-areas: 'bioimage'
+ 'bio'
+ 'job1'
+ 'job2'
+ 'job3';
     grid-template-columns: 1fr; }
   .projects {
     grid-template-columns: repeat(2, 1fr); } }
